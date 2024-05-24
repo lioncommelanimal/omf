@@ -1,0 +1,996 @@
+/* variables */
+
+$light-grey:rgb(219, 219, 219);
+$white-grey:rgb(237, 237, 237);
+$dark-grey:#2f2f2f;
+$black-1b:rgb(36, 36, 36);
+$black-2:rgb(43, 43, 43);
+$light-purple :#b051c3;
+$dark-purple :#994cd0;
+$lighter-purple :#d356ec;
+$light-green: rgb(151, 228, 202);
+
+
+
+
+/* Fonctions */
+
+/* Set a flex direction*/
+@mixin display-flex($direction){
+    display: flex;
+    @if $direction=="row"{
+        flex-direction: row;
+    }
+    @else if $direction=="column"{
+        flex-direction: column;
+    }
+    @else  {
+        @error "flex direction not specified";
+    }   
+}
+
+/* Justify element horizontally*/
+@mixin justify-position($position){
+    
+    @if $position=="center"{
+        justify-content: center;
+    }
+    @else if $position=="left"{
+        justify-content: left;
+    }
+    @else if $position=="right"{
+        justify-content: right;
+    }
+    @else if $position=="end"{
+        justify-content: end;
+    }
+    @else if $position=="space-between"{
+        justify-content: space-between;
+    }
+    @else  {
+        @error "position not specified";
+    }   
+}
+
+/* Align element vertically*/
+@mixin align-position($position){
+    
+    @if $position=="center"{
+        align-items: center;
+    }
+    @else if $position=="start"{
+        align-items:flex-start;
+    }
+    @else if $position=="end"{
+        align-items: flex-end;
+    }
+    @else if $position=="self"{
+        align-self: center;
+    }
+    @else  {
+        @error "alignment not specified";
+    }   
+}
+
+/* Style a font */
+
+@mixin set-font($family,$size,$color){
+    font-family: $family;
+    font-size: $size;
+    color: $color;
+
+}
+
+@mixin set-font-weight($family,$size,$color,$weight){
+    font-family: $family;
+    font-size: $size;
+    color: $color;
+    font-weight: $weight;
+
+}
+
+/* Style a element round */
+@mixin round-corners($style,$size,$color,$radius){
+
+        border-style: $style;
+        border-radius: $radius;
+        border-width: $size;
+        border-color: $color;
+    
+}
+
+/* padding of an element */
+@mixin padding($top,$right,$bottom,$left){
+    padding: $top;
+    padding-right: $right;
+    padding-bottom: $bottom;
+    padding-left: $left;
+
+}
+
+/* margin of an element */
+@mixin margin($top,$right,$bottom,$left){
+
+    margin-top: $top;
+    margin-right: $right;
+    margin-bottom: $bottom;
+    margin-left: $left;
+    
+}
+
+/*size of a element box*/
+
+@mixin box-size ($percent){
+    width: $percent;
+
+}
+
+/* width and height of and element*/
+@mixin width-height ($w,$h){
+    width: $w;
+    height: $h;
+}
+
+/* Absolute positionning*/
+
+@mixin absolute-position ($top,$right,$bottom,$left){
+
+    position: absolute;
+
+    top: $top;
+    right: $right;
+    bottom: $bottom;
+    left: $left;
+
+
+}
+
+@mixin design-button($width, $height, $color,$text-color,$font-size){
+    width: $width;
+    height: $height;
+    background-color: $color;
+    color:$text-color;
+    font-size:$font-size;
+
+    box-shadow: 1px 1px 4px 1px rgb(179, 179, 179);
+
+}
+
+
+
+/* __________________________________________________________________________________________________________________________________*/
+
+body{
+@include margin(0px,0px,0px,0px )
+}
+
+a{
+    color: inherit;
+    text-decoration: none;
+}
+
+.container{
+@include box-size(100%);
+@include display-flex(column);
+
+}
+
+.header{
+@include display-flex(row);
+@include justify-position(center);
+@include padding(20px,0px,15px,0px);
+
+&__logo{
+    width: 180px; }
+}
+
+.headerv2{
+
+@include display-flex(column);
+@include justify-position(center);
+
+background-color: white;
+
+@include padding(20px,0px,0px,0px);
+@include margin(0px, 0px, 335px , 0px);
+   
+   
+       &__logo{     
+        @include align-position(self);
+        @include margin(0px, 0px, 10px , 0px);
+        width: 30%;    
+       }
+   
+       &__image{
+        @include width-height(100%,400px );
+        @include absolute-position(60px,0px,0px,0px);
+           
+        z-index: -1;
+        object-fit: cover;
+       }
+   
+        i{
+        @include absolute-position(30px,0px,0px,25px);
+      
+       }
+   }
+   
+  
+
+.localisation {
+@include display-flex(row);
+
+gap: 15px;
+height: 55px;
+background-color: $light-grey;
+box-shadow: 3px 0.8px 8px 1px rgba(30, 30, 30, 0.4);
+
+@include justify-position(center);
+@include align-position(center);
+
+&__ville{
+ @include set-font(Roboto,18px,$black-1b);
+    }
+}
+
+.decouvrir {
+
+height: 250px;
+@include margin(3px,0px ,0px , 0px);
+background-color: $white-grey;
+@include display-flex(column);
+@include align-position(center);
+    
+
+   &__p1{
+    width: 250px;
+
+    @include set-font-weight(Roboto,24px,$black-1b,500);
+    text-align: center;
+    @include margin(20px,0px ,0px , 0px);
+  
+   }
+
+   &__p2{
+    width: 350px;
+
+    @include set-font-weight(Roboto,17px,$black-2,300);
+    text-align: center;
+    @include margin(17px,0px ,30px , 0px);
+    
+
+   }
+
+   &__button{
+    @include design-button(230px,60px ,$light-purple , white, 16px);
+    @include round-corners(none,0 ,none , 30px)
+
+   }
+   
+}
+
+
+
+.fonctionnement{
+
+    &__p1{
+        padding-top: 25px;
+        margin-left: 20px;
+        @include set-font-weight(Roboto,25px,$black-1b,600);
+        
+    }
+    height: 400px;
+    @include display-flex(column);
+    padding-bottom: 70px;
+ 
+   
+    &__button{
+        @include display-flex(row);
+        @include justify-position(center);
+        @include align-position(center);
+
+        @include design-button(90%,290px ,$white-grey ,$black-2, 16px);
+        border-radius: 25px;
+        gap: 15px;
+        font-weight: 580;
+        @include margin(20px,0px ,0px ,30px );
+
+        border-style: none;
+        position: relative;
+          
+    }
+
+    &__notif{
+        @include width-height(25px, 25px);
+  
+        border-radius: 50%;
+        background-color: $dark-purple;
+        color: white;
+        position: absolute; 
+    }
+
+    #n1,#n2,#n3{
+
+        @include display-flex(row);
+        @include justify-position(center);
+        @include align-position(center);
+        @include absolute-position(28px, 0px,30px ,-10px )
+          
+    }
+}
+
+
+
+
+.fa-heart{
+   position: absolute;
+   left: 88%;
+
+   
+  
+}
+
+
+
+.restaurants{
+
+    @include display-flex(column);
+    background-color: $white-grey;
+    @include padding(0px,0px,50px,0px);
+
+    &__title{
+        @include margin(50px,0px,25px,25px );
+        @include set-font-weight(Roboto,25px,$black-1b,650);
+    }
+
+
+
+    &__card{
+        @include display-flex(column);
+        background-color: white;
+
+        @include width-height(94%, 360px);
+
+        @include margin(0px,20px,25px,20px );
+
+        border-radius: 10px;
+        box-shadow: 2px 2px 2px #bcbcbc;
+        position: relative;
+
+
+
+            &__image{
+                @include width-height(100%, 270px);
+            
+                border-top-left-radius: 10px;  
+                border-top-right-radius: 10px;
+
+                object-fit: cover;
+            }
+
+            &__name{
+
+            @include margin(10px,0px,5px,15px );
+            @include set-font-weight(Roboto,19px,$black-1b,500);
+    
+            }
+
+            &__place{
+                @include margin(0px,0px,0px,15px );
+                @include set-font-weight(Roboto,17px,$black-2,200);
+            }
+
+            & a {
+                text-decoration: none;
+               }
+
+            
+
+            &__new1{
+                
+                @include width-height(14%, 40px);
+                @include display-flex(row);
+                @include justify-position(center);
+                @include align-position(center);
+                @include set-font-weight(Roboto,15px,rgb(44, 135, 95),500);
+            
+                background-color: rgb(157, 255, 222);
+                border-radius: 2px;
+
+                @include absolute-position(3%,0,0,84%);
+               
+                      
+            }    
+                
+            &__new2{
+
+                @include width-height(14%, 40px);
+                @include display-flex(row);
+                @include justify-position(center);
+                @include align-position(center);
+                @include set-font-weight(Roboto,15px,rgb(44, 135, 95),500);
+            
+                background-color: rgb(157, 255, 222);
+                border-radius: 2px;
+                
+                @include absolute-position(3%,0,0,84%);
+              
+                
+                }           
+            
+    }
+}
+
+
+
+.footer{
+    background-color:$dark-grey ;
+    height: 190px;
+    color: white;
+   
+    
+
+    &__i {
+        @include set-font(Shrikhand, 20px , white );
+        @include padding(15px,0px,0px,40px);
+        @include margin(0px, 0px, 15px , 0px);
+       
+       }
+
+   & li {
+    list-style: none;
+    gap:8px;
+
+    @include margin(0px, 0px, 8px , 0px);
+    @include display-flex(row);
+   
+   }
+}
+
+
+
+/* Menu */
+
+
+
+.menu{
+    @include width-height(100%,1330px );
+    background-color: rgb(237, 237, 237);;
+    border-top-left-radius:55px;
+    border-top-right-radius: 55px;
+   
+    
+
+    &__title{
+   
+   @include padding(40px,0px,0px,25x);
+   margin-bottom: 35px;
+   @include set-font(Shrikhand, 24px , $black-1b);
+   position: relative;
+    }
+
+    &__entrees__p,  &__plats__p, &__desserts__p{
+       
+        @include margin(30px, 0px, 15px , 15px);
+        
+      
+    }
+    /* menu green underline*/
+
+    &__entrees__p:after,  &__plats__p::after, &__desserts__p:after {
+        content: '';
+        display: block;
+        position: relative;
+        width: 5%;
+        border: 2px solid rgb(145, 224, 198);
+        @include margin(5px, 0px, 15px , 0px);
+        
+      
+    }
+
+    .menu__entrees__card__p :first-child, .menu__plats__card__p :first-child, .menu__desserts__card__p :first-child  {
+        @include set-font-weight(Roboto, 18px , black ,500);
+        @include margin(7px, 0px, 0px , 15px);
+       
+    }
+
+    .menu__entrees__card__p :nth-last-child(1), .menu__plats__card__p :nth-last-child(1), .menu__desserts__card__p :nth-last-child(1){
+        @include set-font-weight(Roboto, 15px , rgb(49, 49, 49),300 );
+
+    }
+    
+    &__entrees__card,&__plats__card, &__desserts__card{
+       
+        @include width-height(96%,75px );
+        background-color: white;
+        @include margin(0px, 0px, 8px , 2%);
+        
+        border-radius: 15px;
+
+        @include display-flex(row);
+        
+        @include align-position(center);
+
+        
+        &__p {
+            
+           width: 55%;
+      
+            }
+
+        &__p p{
+            
+        @include margin(5px, 0px, 5px , 15px);
+  
+        }
+
+        &__price{
+            @include align-position(self);
+            @include margin(23px, 15px, 0px , 0px);
+                    
+        }
+
+        &__price-and-check{
+            width: 45%;
+            @include display-flex(row);
+            @include justify-position(end);
+
+        }
+    
+    }
+
+    .selection{
+
+        @include width-height(70px, 75px);
+        background-color: $light-green;
+        @include display-flex(row);
+        @include align-position(center);
+        @include justify-position(center);
+        
+        
+        border-top-right-radius: 15px;
+        border-bottom-right-radius: 15px;
+       
+        display: none !important;
+        
+       
+    }
+
+    &__commander{
+    
+        @include display-flex(row);
+        @include justify-position(center);
+        
+        
+    }
+    &__commander__btn{
+        @include design-button(23%,60px ,$light-purple , white, 16px);
+        @include round-corners(none, 0,none , 30px);
+        @include margin(30px, 0px, 30px , 0px);
+   
+        box-shadow: 1px 1px 4px 1px rgb(179, 179, 179);
+
+    }
+
+    .fa-heart{
+        @include absolute-position(49px, 4% , 0,91% );
+        
+    } 
+
+}
+
+.menu__entrees__card__price-and-check, .menu__plats__card__price-and-check, .menu__desserts__card__price-and-check{
+    cursor: pointer;
+}
+
+/*-----------------------------------Animations-----------------------------*/
+
+/*eclaircissement bouton */
+.decouvrir__button , .menu__commander__btn{
+    &:hover {
+        background-color: $lighter-purple;
+        box-shadow: 1px 1px 4px 2px rgb(145, 145, 145);
+    }
+  
+}
+
+.fonctionnement__button{
+    &:hover {
+        background-color: rgb(225, 225, 225);
+        box-shadow: 1px 1px 4px 2px rgb(145, 145, 145);
+    }
+
+}
+
+/* remplissage des coeur*/
+
+.purple-heart{
+   
+    opacity: 0;
+
+    &:hover {
+    animation: filling 0.4s ease-in-out;
+    @keyframes filling{
+
+        0% {  
+                 
+            opacity: 0;
+            
+        } 100% { 
+            color: $light-purple;  
+            opacity: 1;
+            
+            }
+        } 
+        animation-fill-mode: forwards;
+
+    }
+
+   
+}
+
+
+
+.menu__entrees__card{
+
+    animation: e-loading 1.5s ease-in-out;
+    animation-delay: 0.5s;
+    visibility: hidden;
+    
+
+    @keyframes e-loading{
+        0% {         
+            opacity: 0;
+            
+        } 100% { 
+            opacity: 1;
+            visibility: visible;
+            }
+        } 
+        animation-fill-mode: forwards;
+
+}
+
+.menu__plats__card{
+
+    animation: p-loading 1.5s ease-in-out;
+    animation-delay: 1s;
+    visibility: hidden;
+    
+
+    @keyframes p-loading{
+        0% {         
+            opacity: 0;
+            
+        } 100% { 
+            opacity: 1;
+            visibility: visible;
+            }
+        } 
+        animation-fill-mode: forwards;
+}
+
+.menu__desserts__card{
+
+    animation: d-loading 1.5s ease-in-out;
+    animation-delay: 1.5s;
+    visibility: hidden;
+    
+
+    @keyframes d-loading{
+        0% {         
+            opacity: 0;
+            
+        } 100% { 
+            opacity: 1;
+            visibility: visible;
+            }
+        } 
+        animation-fill-mode: forwards;
+}
+
+
+/*Loader*/     
+
+.loader{
+
+@include width-height(100vw,100vh );
+background-color: $dark-purple;
+position: fixed;
+z-index: 2;
+    
+animation: splashscreen 1s linear;
+
+    
+    @keyframes splashscreen{
+    0% {    
+        visibility: visible;
+    } 100% { 
+        display: none;
+        }
+    } 
+
+
+&__spinner{
+
+border: 6px solid transparent;
+border-top-color: $light-grey;
+border-bottom-color: $light-grey;
+border-radius: 50%;
+            
+@include width-height(60px, 60px);
+@include absolute-position(47%,0 ,0 , 47%);
+           
+animation: spin 1.5s ;
+         
+    @keyframes spin{
+
+    to { 
+        transform: rotate(360deg);
+    } } 
+             
+    }
+
+    animation-fill-mode: forwards;
+} 
+
+
+
+ 
+/* Food selection */
+
+.menu__entrees__card,.menu__plats__card,.menu__desserts__card{
+    
+    &:hover{
+       
+        .selection{
+            display:flex !important;   
+            animation: slide 0.5s ease-in-out;
+            overflow: hidden;
+        
+    
+        @keyframes slide{
+            0% {     
+            
+              width: 0px;
+                
+            } 100% { 
+                visibility: visible;
+                width: 70px;
+                }
+            } 
+        }
+        
+    
+    }
+
+}
+
+
+
+    
+
+
+
+
+
+/*_________________________________________________________________________________________________*/
+
+@media only screen and (min-width: 768px) {
+
+
+    .header{
+        &__logo{
+            width: 250px;    
+        }
+    }
+        
+    .headerv2{
+        
+        @include display-flex(column);
+        @include justify-position(center);
+        
+        background-color: white;
+        
+           
+           
+               &__logo{     
+                align-self: center;
+                margin-bottom: 10px;
+                width: 250px;    
+               }
+           
+               &__image{
+        
+                @include width-height(100%, 400px);
+                @include absolute-position(60px,0px ,0px ,0px );
+                z-index: -1;
+                object-fit: cover;
+
+               }
+
+               .i{
+                @include absolute-position(23px,0px ,0px ,25px );
+               }
+
+           }
+           
+        
+
+    .decouvrir {
+
+               &__p1{
+                @include set-font(Roboto,40px,rgb(36, 36, 36));
+                margin-bottom: 0;
+                width: 100%;
+        
+               }
+            
+               &__p2{
+                width: 100%;
+               }
+            
+               &__button{
+               @include width-height(230px,60px );
+            
+               }
+               
+            }
+            
+    .fonctionnement{
+
+        height: 270px;
+        @include display-flex(row);
+        flex-wrap: wrap;
+        @include justify-position(center);
+        padding: 0;
+
+                &__p1{
+                   
+                    font-size: 26px;
+                    font-weight: 600;
+                    margin-left: 12%;   
+                    width:100%;
+                     
+                }
+                              
+                &__button{
+                    @include width-height(25%, 80px);
+                    @include margin(0px,0px , 0px,30px );
+                    @include padding(0px,0px ,0px,20px );
+                      
+                }
+                   
+ }
+ 
+ .fa-heart{
+    left: 86%;
+ }
+
+ .restaurants{
+
+
+    @include display-flex(row);
+    @include justify-position(center);
+    flex-wrap: wrap;
+    @include padding(0px,0px,30px,0px);
+
+    &__title{
+
+        @include margin(30px,0px,0px,12% );
+        padding-bottom: 40px;
+        width:100%;
+    }
+
+
+    &__card{
+        @include display-flex(column);
+        @include width-height(37%, 360px);
+        @include margin(0px,20px,25px,20px );
+       
+       
+
+            
+
+            &__name{
+
+            font-weight:400;
+            margin-top: 12px;
+            
+            }  
+            
+            &__new1, &__new2{
+                @include width-height(20%, 40px);
+                @include absolute-position(3%,0,0,78%);
+            }
+            
+    }
+}
+
+
+    
+    .footer{
+      
+        @include display-flex(row);
+        flex-direction: row-reverse;
+        @include padding(0px, 50px, 0px, 0px);
+        height: 80px;
+
+        &__i {
+            @include margin(0px, 0px, 0px , 25px);
+           }
+
+           ul{
+            display: flex;
+            gap:15px;
+           
+        }
+    }
+    
+    
+
+/*_____________________________________________________________________________*/
+
+
+    
+    /*cartes*/
+    
+  
+    
+    .menu{
+
+    &__title{
+   
+        @include display-flex(row);
+        justify-content: center;
+           
+             }
+
+     .fa-heart{
+                position: absolute;
+                left: 68%;
+                top:44px;
+        
+            }
+
+    @include width-height(80%,1230px );
+    margin-left: 11%;
+       
+    
+        &__entrees__p,  &__plats__p, &__desserts__p{
+    
+            margin-top: 30px;
+            margin-left: 12%;
+           
+        }
+    
+        
+        &__entrees__card,&__plats__card, &__desserts__card{
+            
+            @include width-height(76%, 75px);
+           
+            margin-left: 12%;
+            border-radius: 15px;
+
+    
+        }
+    
+    
+    
+        .menu__entrees__card__p :first-child, .menu__plats__card__p :first-child, .menu__desserts__card__p :first-child  {
+          
+            margin-left: 15px;
+            
+        }
+    
+        &__commander__btn{
+            @include design-button(150px,50px ,$light-purple , white, 16px);
+          
+    
+        } 
+
+    
+    }
+    
+
+ }
