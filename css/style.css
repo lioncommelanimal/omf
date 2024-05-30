@@ -244,7 +244,9 @@ a {
   color: white;
   position: absolute;
 }
-.fonctionnement #n1, .fonctionnement #n2, .fonctionnement #n3 {
+.fonctionnement #n1,
+.fonctionnement #n2,
+.fonctionnement #n3 {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -482,7 +484,9 @@ a {
   margin-bottom: 15px;
   margin-left: 0px;
 }
-.menu .menu__entrees__card__p :first-child, .menu .menu__plats__card__p :first-child, .menu .menu__desserts__card__p :first-child {
+.menu .menu__entrees__card__p :first-child,
+.menu .menu__plats__card__p :first-child,
+.menu .menu__desserts__card__p :first-child {
   font-family: Roboto;
   font-size: 18px;
   color: black;
@@ -492,7 +496,9 @@ a {
   margin-bottom: 0px;
   margin-left: 15px;
 }
-.menu .menu__entrees__card__p :nth-last-child(1), .menu .menu__plats__card__p :nth-last-child(1), .menu .menu__desserts__card__p :nth-last-child(1) {
+.menu .menu__entrees__card__p :nth-last-child(1),
+.menu .menu__plats__card__p :nth-last-child(1),
+.menu .menu__desserts__card__p :nth-last-child(1) {
   font-family: Roboto;
   font-size: 15px;
   color: rgb(49, 49, 49);
@@ -549,8 +555,9 @@ a {
           justify-content: end;
 }
 .menu .selection {
-  width: 70px;
-  height: 75px;
+  /*@include width-height(70px, 75px);*/
+  width: 0px;
+  height: 0px;
   background-color: rgb(151, 228, 202);
   display: -webkit-box;
   display: -ms-flexbox;
@@ -567,7 +574,33 @@ a {
           justify-content: center;
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
-  display: none !important;
+  opacity: 0;
+  -webkit-animation: reslide 0.5s ease-in-out;
+          animation: reslide 0.5s ease-in-out;
+}
+@-webkit-keyframes reslide {
+  from {
+    width: 70px;
+    height: 75px;
+    opacity: 1;
+  }
+  to {
+    width: 0px;
+    height: 75px;
+    opacity: 0;
+  }
+}
+@keyframes reslide {
+  from {
+    width: 70px;
+    height: 75px;
+    opacity: 1;
+  }
+  to {
+    width: 0px;
+    height: 75px;
+    opacity: 0;
+  }
 }
 .menu__commander {
   display: -webkit-box;
@@ -610,13 +643,16 @@ a {
   color: white;
 }
 
-.menu__entrees__card__price-and-check, .menu__plats__card__price-and-check, .menu__desserts__card__price-and-check {
+.menu__entrees__card__price-and-check,
+.menu__plats__card__price-and-check,
+.menu__desserts__card__price-and-check {
   cursor: pointer;
 }
 
 /*-----------------------------------Animations-----------------------------*/
 /*eclaircissement bouton */
-.decouvrir__button:hover, .menu__commander__btn:hover {
+.decouvrir__button:hover,
+.menu__commander__btn:hover {
   background-color: #d356ec;
   -webkit-box-shadow: 1px 1px 4px 2px rgb(145, 145, 145);
           box-shadow: 1px 1px 4px 2px rgb(145, 145, 145);
@@ -629,8 +665,69 @@ a {
 }
 
 /* remplissage des coeur*/
+.grey-heart {
+  color: rgb(237, 237, 237);
+  z-index: 1;
+  -webkit-animation: noatload 0.8s;
+          animation: noatload 0.8s;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+@-webkit-keyframes noatload {
+  0% {
+    z-index: 1;
+  }
+  100% {
+    z-index: -1;
+  }
+}
+@keyframes noatload {
+  0% {
+    z-index: 1;
+  }
+  100% {
+    z-index: -1;
+  }
+}
+
+.contour-heart {
+  z-index: 2;
+  -webkit-animation: noatload 0.8s;
+          animation: noatload 0.8s;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+@keyframes noatload {
+  0% {
+    z-index: 2;
+  }
+  100% {
+    z-index: 0;
+  }
+}
+
 .purple-heart {
   opacity: 0;
+  -webkit-animation: nofilling 0.4s ease-in-out;
+          animation: nofilling 0.4s ease-in-out;
+}
+@-webkit-keyframes nofilling {
+  from {
+    opacity: 1;
+    color: #b051c3;
+  }
+  to {
+    opacity: 0;
+  }
+}
+@keyframes nofilling {
+  from {
+    opacity: 1;
+    color: #b051c3;
+  }
+  to {
+    opacity: 0;
+  }
 }
 .purple-heart:hover {
   -webkit-animation: filling 0.4s ease-in-out;
@@ -657,6 +754,7 @@ a {
   }
 }
 
+/*  Chargement progressif menu */
 .menu__entrees__card {
   -webkit-animation: e-loading 1.5s ease-in-out;
           animation: e-loading 1.5s ease-in-out;
@@ -798,30 +896,36 @@ a {
 }
 
 /* Food selection */
-.menu__entrees__card:hover .selection, .menu__plats__card:hover .selection, .menu__desserts__card:hover .selection {
-  display: -webkit-box !important;
-  display: -ms-flexbox !important;
-  display: flex !important;
+.menu__entrees__card:hover .selection,
+.menu__plats__card:hover .selection,
+.menu__desserts__card:hover .selection {
   -webkit-animation: slide 0.5s ease-in-out;
           animation: slide 0.5s ease-in-out;
-  overflow: hidden;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
 }
 @-webkit-keyframes slide {
-  0% {
+  from {
     width: 0px;
+    height: 75px;
+    opacity: 0;
   }
-  100% {
-    visibility: visible;
+  to {
     width: 70px;
+    height: 75px;
+    opacity: 1;
   }
 }
 @keyframes slide {
-  0% {
+  from {
     width: 0px;
+    height: 75px;
+    opacity: 0;
   }
-  100% {
-    visibility: visible;
+  to {
     width: 70px;
+    height: 75px;
+    opacity: 1;
   }
 }
 
@@ -1034,7 +1138,9 @@ a {
     margin-left: 12%;
     border-radius: 15px;
   }
-  .menu .menu__entrees__card__p :first-child, .menu .menu__plats__card__p :first-child, .menu .menu__desserts__card__p :first-child {
+  .menu .menu__entrees__card__p :first-child,
+  .menu .menu__plats__card__p :first-child,
+  .menu .menu__desserts__card__p :first-child {
     margin-left: 15px;
   }
   .menu__commander__btn {
