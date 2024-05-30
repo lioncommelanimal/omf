@@ -436,6 +436,11 @@ a {
           flex-direction: row;
 }
 
+.fa-utensils, .fa-handshake-angle {
+  margin-right: 2px;
+  color: white;
+}
+
 /* Menu */
 .menu {
   width: 100%;
