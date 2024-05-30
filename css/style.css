@@ -265,6 +265,10 @@ a {
   left: -10px;
 }
 
+.fa-store, .fa-list {
+  color: #8f8f8f;
+}
+
 .fa-heart {
   position: absolute;
   left: 88%;
@@ -436,8 +440,8 @@ a {
           flex-direction: row;
 }
 
-.fa-utensils, .fa-handshake-angle {
-  margin-right: 2px;
+.fa-utensils {
+  margin-right: 5px;
   color: white;
 }
 
@@ -601,6 +605,9 @@ a {
   right: 4%;
   bottom: 0;
   left: 91%;
+}
+.menu .fa-circle-check {
+  color: white;
 }
 
 .menu__entrees__card__price-and-check, .menu__plats__card__price-and-check, .menu__desserts__card__price-and-check {

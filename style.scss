@@ -319,7 +319,9 @@ background-color: $white-grey;
     }
 }
 
-
+.fa-store,.fa-list{
+    color: #8f8f8f;
+}
 
 
 .fa-heart{
@@ -447,8 +449,8 @@ background-color: $white-grey;
    }
 }
 
-.fa-utensils,.fa-handshake-angle{
-    margin-right: 2px;
+.fa-utensils{
+    margin-right: 5px;
     color: white;
 }
 
@@ -581,6 +583,10 @@ background-color: $white-grey;
         @include absolute-position(49px, 4% , 0,91% );
         
     } 
+
+    .fa-circle-check{
+        color: white;
+    }
 
 }
 
